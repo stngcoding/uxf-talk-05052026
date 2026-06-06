@@ -70,3 +70,17 @@ Wrap page content with `<Layout>` from `components/Layout/index.tsx`:
 </Layout>
 ```
 Props: `title` (header title), `newProduct` (adjusts mobile header height), `hideSidebar` (full-width layout without sidebar).
+
+## Agent skills
+
+### Issue tracker
+
+Issues live in this repo's GitHub Issues, managed via the `gh` CLI. See `docs/agents/issue-tracker.md`.
+
+### Triage labels
+
+Five canonical roles, each using its default label name. See `docs/agents/triage-labels.md`.
+
+### Domain docs
+
+Single-context: one `CONTEXT.md` + `docs/adr/` at the repo root. See `docs/agents/domain.md`.
