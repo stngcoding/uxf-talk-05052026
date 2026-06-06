@@ -48,7 +48,7 @@ const Sidebar = ({
             enabled={visibleSidebar}
         >
             {navigation.map((item) =>
-                item.href ? (
+                "href" in item ? (
                     <NavLink key={item.title} value={item} />
                 ) : (
                     <Dropdown key={item.title} value={item} />

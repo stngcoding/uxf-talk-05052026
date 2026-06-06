@@ -1,4 +1,22 @@
-export const navigation = [
+type NavigationLink = {
+    title: string;
+    icon: string;
+    href: string;
+};
+
+type NavigationGroup = {
+    title: string;
+    icon: string;
+    list: {
+        title: string;
+        href: string;
+        counter?: number;
+    }[];
+};
+
+type NavigationItem = NavigationLink | NavigationGroup;
+
+export const navigation: NavigationItem[] = [
     {
         title: "Dashboard",
         icon: "dashboard",

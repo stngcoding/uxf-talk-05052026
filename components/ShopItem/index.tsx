@@ -1,4 +1,6 @@
-import { useState } from "react";
+"use client";
+
+import { useRouter } from "next/navigation";
 import { NumericFormat } from "react-number-format";
 import Image from "@/components/Image";
 import Icon from "@/components/Icon";
@@ -17,14 +19,14 @@ type ShopItemProps = {
 };
 
 const ShopItem = ({ className, value }: ShopItemProps) => {
-    const [visible, setVisible] = useState(false);
+    const router = useRouter();
 
     return (
         <div
-            className={`group flex flex-col gap-2 p-2 bg-b-surface2 rounded-4xl transition-shadow hover:shadow-depth ${
+            className={`group flex flex-col gap-2 p-2 bg-b-surface2 rounded-4xl transition-shadow cursor-pointer hover:shadow-depth ${
                 className || ""
             }`}
-            onClick={() => setVisible(!visible)}
+            onClick={() => router.push("/shop/details")}
         >
             <div className="relative aspect-[1.5]">
                 <Image
@@ -34,11 +36,7 @@ const ShopItem = ({ className, value }: ShopItemProps) => {
                     alt=""
                     sizes="(max-width: 767px) 100vw, (max-width: 1200px) 50vw, 33.333vw"
                 />
-                <div
-                    className={`absolute top-1/2 left-1/2 flex gap-4 -translate-1/2 invisible opacity-0 transition-all group-hover:visible group-hover:opacity-100 ${
-                        visible ? "max-lg:visible max-lg:opacity-100" : ""
-                    }`}
-                >
+                <div className="absolute top-1/2 left-1/2 flex gap-4 -translate-1/2 invisible opacity-0 transition-all group-hover:visible group-hover:opacity-100">
                     <Button
                         className="-rotate-45"
                         as="link"
@@ -47,7 +45,12 @@ const ShopItem = ({ className, value }: ShopItemProps) => {
                         isWhite
                         isCircle
                     />
-                    <Button icon="bag" isWhite isCircle />
+                    <Button
+                        icon="bag"
+                        isWhite
+                        isCircle
+                        onClick={(e) => e.stopPropagation()}
+                    />
                 </div>
             </div>
             <div className="p-4 max-xl:p-3">
