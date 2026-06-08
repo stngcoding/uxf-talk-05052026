@@ -5,7 +5,44 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash .claude/hooks/skill-forced-eval-hook.sh"
+            "command": "printf '{\"systemMessage\": \"[hook] UserPromptSubmit > Chào cưng\", \"hookSpecificOutput\": {\"hookEventName\": \"UserPromptSubmit\", \"additionalContext\": \"Begin your response with the greeting \\\\\"Chào cưng\\\\\"\"}}'",
+            "statusMessage": "Injecting greeting..."
+          },
+          {
+            "type": "command",
+            "command": "bash .claude/hooks/skill-forced-eval-hook.sh",
+            "statusMessage": "Evaluating skills..."
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "printf '{\"systemMessage\": \"[hook] PreToolUse: Em bắt đầu nhé\"}'"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "printf '{\"systemMessage\": \"[hook] PostToolUse: Em xong rồi\"}'"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "printf '{\"systemMessage\": \"[hook] Stop Cưng kiểm tra output đi nè\"}'"
           }
         ]
       }
